@@ -1,3 +1,3 @@
 # A-la-Bonne-page
 
-projet de Groupe: Ayyoub-Louise-Rayanne
+projet de Groupe: Ayyoub-Louise-Rayan
