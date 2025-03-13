@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title> xxx </title>
-    <link rel="stylesheet" href=" xxx  " />
+    <link rel="stylesheet" href=" ../css/style.css" />
   </head>
   <body>
    <header>
         <h1>La Plume Digitale</h1>
         <div class="navigation">
             <nav class="bouton-navigation">
-                <a href="/index.html">Accueil</a>
-                <a href="/html/all-books.html">Livre</a>
-                <a href="/html/contact.html">Contacter</a>
+              <a href="./index.php?action=accueil">Accueil</a>
+              <a href="./index.php?action=chercher">chercher</a>
+              <a href="./index.php?action=contact">contact</a>
+              <a href="./index.php?action=connect">connect</a>
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="Appuyez pour chercher">
