@@ -2,8 +2,9 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title> xxx </title>
+    <title> A la bonne page </title>
     <link rel="stylesheet" href=" ../css/style.css" />
+    <img src="../img/logo.png" alt="Logo" class="logo" style="width: 300px; height: auto;">
   </head>
   <body>
    <header>
