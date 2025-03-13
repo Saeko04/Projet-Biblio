@@ -19,9 +19,3 @@
             </div>
         </div>
     </header>
-     <nav> 
-       <p>Ceci sera le menu !!!!</p>
-       <a href="./index.php?action=accueil">Accueil</a>
-       <a href="./index.php?action=chercher">chercher</a>
-       <a href="./index.php?action=contact">contact</a>
-      </nav>
