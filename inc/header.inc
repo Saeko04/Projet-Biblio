@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title> A la bonne page </title>
     <link rel="stylesheet" href=" ../css/style.css" />
-    <img src="../img/logo.png" alt="Logo" class="logo" style="width: 300px; height: auto;">
+    <link rel="icon" type="image/png" href="../img/logo.png">
   </head>
   <body>
    <header>
