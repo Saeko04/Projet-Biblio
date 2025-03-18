@@ -23,6 +23,11 @@ function connect(){
     }
 }
 
+function disconnect(&$pdo){
+    $pdo = null;
+    echo "Déconnexion de la base de données réussie !";
+}
+
 // Fonction qui retourne tous les livres
 function getTousLesLivres($pdo) {
     $sql = "SELECT ref, titre, auteur FROM Livres"; 
