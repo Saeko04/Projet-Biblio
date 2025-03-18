@@ -1,6 +1,6 @@
 <?php
 //import du header
- include 'header.inc'; 
+include 'header.inc'; 
 
 
 //milieu --> infos: adresse etc....
