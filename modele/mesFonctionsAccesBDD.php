@@ -23,5 +23,11 @@ function connect(){
     }
 }
 
+// Fonction qui retourne tous les livres
+function getTousLesLivres($pdo) {
+    $sql = "SELECT ref, titre, auteur FROM Livres"; 
+    $stmt = $pdo->query($sql); 
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
