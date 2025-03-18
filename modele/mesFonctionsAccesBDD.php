@@ -28,11 +28,12 @@ function disconnect(&$pdo){
     echo "Déconnexion de la base de données réussie !";
 }
 
-// Fonction qui retourne tous les livres
+// Fonction qui retourne tous les livres (référence,titre,auteur et résumé)
 function getTousLesLivres($pdo) {
-    $sql = "SELECT ref, titre, auteur FROM Livres"; 
+    $sql = "SELECT ref, titre, auteur, resume FROM Livres"; 
     $stmt = $pdo->query($sql); 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 ?>
