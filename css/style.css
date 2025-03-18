@@ -1,10 +1,23 @@
 /* CSS */
+body{
+    margin: 0;
+}
 
     /* En-tête */
+    .logo {
+        position: absolute;
+        top: 10px; 
+        left: 10px; 
+        width: 100px; /* Ajuste la taille */
+        height: auto;
+    }
+    
+      
     header {
+        height: 100px; 
         text-align: center;
         padding: 20px 0;
-        background-color: #0d1f23;
+        background-color: #792213  ;
         position: relative;
     }
     
@@ -68,7 +81,7 @@
     
     /* Pied de page */
     footer {
-        background-color: #0d1f23;
+        background-color: #792213 ;
         color: #AFB3B7;
         text-align: center;
         padding: 20px 10px;
