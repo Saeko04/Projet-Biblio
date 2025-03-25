@@ -1,8 +1,8 @@
 <?php
-//script de test de la fonction getTousLesLivres
+// script de test de la fonction getTousLesLivres
 
-include_once "modele/mesFonctionsAccesBDD.php";
-$pdo=connect();
+include __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
+$pdo = connect();
 
 // Appel de la fonction
 $livres = getTousLesLivres($pdo);
