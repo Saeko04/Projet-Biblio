@@ -12,10 +12,13 @@
     <div class="navigation">
         <nav class="bouton-navigation">
             <a href="./index.php?action=accueil">Accueil</a>
-            <a href="./index.php?action=livres">Livres</a>
             <a href="./index.php?action=chercher">Chercher</a>
+            <a href="./index.php?action=livres">Livres</a>
             <a href="./index.php?action=contact">Contact</a>
         </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Appuyez pour chercher">
+        </div>
         <div class="login-button">
             <a href="./index.php?action=login" class="btn-login">Login</a>
         </div>
