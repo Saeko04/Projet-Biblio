@@ -14,7 +14,6 @@
             <a href="./index.php?action=accueil">Accueil</a>
             <a href="./index.php?action=chercher">Chercher</a>
             <a href="./index.php?action=contact">Contact</a>
-            <a href="./index.php?action=connect">Connect</a>
         </nav>
         <div class="search-bar">
             <input type="text" placeholder="Appuyez pour chercher">
