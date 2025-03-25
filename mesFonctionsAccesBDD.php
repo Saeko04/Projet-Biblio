@@ -1,0 +1,55 @@
+<?php
+
+function connect(){
+    $host = 'localhost';
+    $db   = 'admin';
+    $user = 'login4084';
+    $pass = 'kPdZlrHdSNQzGgW';
+    $charset = 'utf8mb4';
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+    try {
+        $pdo = new PDO($dsn, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    }
+    catch (PDOException $e){
+        echo "Erreur de connexion : " . $e->getMessage();
+        exit;
+    }
+}
+
+function disconnect(&$pdo){
+    $pdo = null;
+}
+
+
+function getTousLesLivres($pdo) {
+    $sql = "SELECT ref, titre, auteur FROM Livres"; 
+    $stmt = $pdo->query($sql); 
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function ajouterLivre($conn, $titre, $auteur, $annee, $genre) {
+    $stmt = $conn->prepare("INSERT INTO livres (titre, auteur, annee, genre) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssis", $titre, $auteur, $annee, $genre);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function supprimerLivre($conn, $id) {
+    $sql = "DELETE FROM livres WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function existe($pdo, $username){
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM utilisateurs WHERE username = ?");
+    $stmt->execute([$username]);
+    return $stmt->fetchColumn() > 0;
+}
+
+
+?>
