@@ -56,6 +56,60 @@ function existe($pdo, $username){
     return $stmt->fetchColumn() > 0;
 }
 
+function getLivreDetails($bdd, $id) {
+    $req = $bdd->prepare("SELECT * FROM Livres WHERE id = ?");
+    $req->execute([$id]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
 
+function getGenreByCotation($bdd, $cotation) {
+    $req = $bdd->prepare("SELECT nom FROM Genres WHERE id_cotation = ?");
+    $req->execute([$cotation]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
+
+function rechercherLivres($bdd, $titre = null, $genre = null) {
+    $sql = "SELECT l.*, g.nom AS genre_nom FROM Livres l
+            JOIN Genres g ON l.cotation = g.id_cotation
+            WHERE 1=1";
+    $params = [];
+
+    if ($titre) {
+        $sql .= " AND l.titre LIKE ?";
+        $params[] = "%$titre%";
+    }
+
+    if ($genre) {
+        $sql .= " AND g.id_cotation = ?";
+        $params[] = $genre;
+    }
+
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getLivresParCritères($bdd, $titre = null, $genre = null) {
+    $sql = "SELECT Livres.*, Genres.nom as nom_genre 
+            FROM Livres 
+            JOIN Genres ON Livres.cotation = Genres.id_cotation
+            WHERE 1=1";
+    
+    $params = [];
+    
+    if (!empty($titre)) {
+        $sql .= " AND Livres.titre LIKE :titre";
+        $params[':titre'] = "%$titre%";
+    }
+    
+    if (!empty($genre)) {
+        $sql .= " AND Livres.cotation = :genre";
+        $params[':genre'] = $genre;
+    }
+    
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
