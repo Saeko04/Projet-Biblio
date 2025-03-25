@@ -1,7 +1,6 @@
 <?php
 $rootPath = dirname(__DIR__, 1); // Racine du projet
 
-require_once $rootPath . '/config/paths.php';
 require_once $rootPath . '/modele/mesFonctionsAccesBDD.php';
 
 if (!function_exists('connexionBDD')) {
