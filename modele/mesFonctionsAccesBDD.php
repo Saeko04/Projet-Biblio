@@ -35,5 +35,27 @@ function getTousLesLivres($pdo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function ajouterLivre($conn, $titre, $auteur, $annee, $genre) {
+    $stmt = $conn->prepare("INSERT INTO livres (titre, auteur, annee, genre) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssis", $titre, $auteur, $annee, $genre);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function supprimerLivre($conn, $id) {
+    $sql = "DELETE FROM livres WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function existe($pdo, $username){
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM utilisateurs WHERE username = ?");
+    $stmt->execute([$username]);
+    return $stmt->fetchColumn() > 0;
+}
+
+
 
 ?>
