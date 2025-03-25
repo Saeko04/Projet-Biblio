@@ -9,7 +9,7 @@ session_destroy();
   <meta charset="UTF-8">
   <title>Déconnexion</title>
   <!-- Redirection automatique après 5 secondes -->
-  <meta http-equiv="refresh" content="5;url=https://s5-4084.nuage-peda.fr/index.php?action=login">
+  <meta http-equiv="refresh" content="index.php?action=login">
   <style>
     body {
       font-family: Arial, sans-serif;
