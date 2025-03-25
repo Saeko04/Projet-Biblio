@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Recherche de livres</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/chercher.css">
 </head>
 <body>
     <div class="container">
