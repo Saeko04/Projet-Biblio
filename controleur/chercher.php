@@ -1,39 +1,40 @@
 <?php
-$rootPath = dirname(__DIR__, 1); // Racine du projet
-
+$rootPath = dirname(__DIR__, 1);  // Racine du projet
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once $rootPath . '/modele/mesFonctionsAccesBDD.php';
 
-if (!function_exists('connexionBDD')) {
-    die("ERREUR: Fonctions de base de données non chargées");
+if (!function_exists('connect')) {
+    die('ERREUR: Fonctions de base de données non chargées');
 }
 
-$bdd = connexionBDD();
+$pdo = connect();
 
 $titre = $_GET['titre'] ?? '';
 $genreSelectionne = $_GET['genre'] ?? '';
 
-$genresDisponibles = $bdd->query("SELECT id_cotation, nom FROM Genres")->fetchAll();
+$genresDisponibles = $pdo->query('SELECT id_cotation, nom FROM genres')->fetchAll();
 
-$sql = "SELECT Livres.*, Genres.nom as nom_genre 
-        FROM Livres 
-        JOIN Genres ON Livres.cotation = Genres.id_cotation
-        WHERE 1=1";
+$sql = 'SELECT livres.*, genres.nom as nom_genre 
+        FROM livres 
+        JOIN genres ON livres.cotation = genres.id_cotation
+        WHERE 1=1';
 
 $params = [];
 
 if (!empty($titre)) {
-    $sql .= " AND Livres.titre LIKE :titre";
+    $sql .= ' AND livres.titre LIKE :titre';
     $params[':titre'] = "%$titre%";
 }
 
 if (!empty($genreSelectionne)) {
-    $sql .= " AND Livres.cotation = :genre";
+    $sql .= ' AND livres.cotation = :genre';
     $params[':genre'] = $genreSelectionne;
 }
 
-$stmt = $bdd->prepare($sql);
+$stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include "vue/vueChercher.php";
+include 'vue/vueChercher.php';
 ?>
