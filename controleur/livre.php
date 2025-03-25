@@ -9,5 +9,5 @@
 
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueContact.php";
+include "vue/vueLivres.php";
 ?>
