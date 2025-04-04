@@ -1,10 +1,47 @@
 /* CSS */
+body{
+    margin: 0;
+}
 
     /* En-tête */
+    .login-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .btn-login {
+        padding: 10px 20px;
+        background-color: #132e35;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+    
+    .btn-login:hover {
+        background-color: #333;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    
+    .logo {
+        position: absolute;
+        top: 10px; 
+        left: 10px; 
+        width: 100px; /* Ajuste la taille */
+        height: auto;
+    }
+    
+      
     header {
+        height: 100px; 
         text-align: center;
         padding: 20px 0;
-        background-color: #0d1f23;
+        background-color: #792213  ;
         position: relative;
     }
     
@@ -65,10 +102,11 @@
     .search-bar input::placeholder {
         color: #888;
     }
+
     
     /* Pied de page */
     footer {
-        background-color: #0d1f23;
+        background-color: #792213 ;
         color: #AFB3B7;
         text-align: center;
         padding: 20px 10px;
