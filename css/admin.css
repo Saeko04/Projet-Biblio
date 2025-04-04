@@ -1,9 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f8;
+    background-color: #F5E6CC; 
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #2C3E50; 
 }
 
 .container {
@@ -11,7 +11,7 @@ body {
     max-width: 1400px;
     width: 100%;
     margin: 40px auto;
-    background: #fff;
+    background: #EAEDED;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 20px;
@@ -25,7 +25,7 @@ body {
 
 .logout-button a {
     display: inline-block;
-    background-color: #e74c3c;
+    background-color: #8B5E3B; 
     color: #fff;
     padding: 8px 12px;
     border-radius: 5px;
@@ -34,12 +34,12 @@ body {
 }
 
 .logout-button a:hover {
-    background-color: #c0392b;
+    background-color: #A3B18A; 
 }
 
 h1, h2 {
     text-align: center;
-    color: #444;
+    color: #2C3E50;
 }
 
 form {
@@ -54,13 +54,13 @@ input[type="text"],
 input[type="number"] {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #A3B18A; 
     width: 220px;
     box-sizing: border-box;
 }
 
 button {
-    background-color: #5c6bc0;
+    background-color: #8B5E3B; 
     color: white;
     border: none;
     padding: 10px 15px;
@@ -70,8 +70,9 @@ button {
 }
 
 button:hover {
-    background-color: #3949ab;
+    background-color: #A3B18A; 
 }
+
 
 .table-responsive {
     width: 100%;
@@ -82,7 +83,6 @@ button:hover {
     width: 100%;
     border-collapse: collapse;
 }
-
 
 table {
     width: 100%;
@@ -98,13 +98,14 @@ table th, table td {
 }
 
 table th {
-    background-color: #5c6bc0;
+    background-color: #8B5E3B; 
     color: white;
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+    background-color: #F1E6CC; 
 }
+
 
 a.supprimer {
     color: inherit;  
@@ -112,9 +113,9 @@ a.supprimer {
     cursor: pointer;       
 }
 
-
 a.supprimer:hover {
     text-decoration: none;
     color: inherit;
 }
+
 
