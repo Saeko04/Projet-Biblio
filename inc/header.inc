@@ -2,26 +2,25 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title> xxx </title>
-    <link rel="stylesheet" href=" xxx  " />
+    <title> A la bonne page </title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="icon" type="image/png" href="../img/logo.png">
   </head>
   <body>
-   <header>
-        <h1>La Plume Digitale</h1>
-        <div class="navigation">
-            <nav class="bouton-navigation">
-                <a href="/index.html">Accueil</a>
-                <a href="/html/all-books.html">Livre</a>
-                <a href="/html/contact.html">Contacter</a>
-            </nav>
-            <div class="search-bar">
-                <input type="text" placeholder="Appuyez pour chercher">
-            </div>
+<header>
+    <h1> A la bonne page</h1>
+    <div class="navigation">
+        <nav class="bouton-navigation">
+            <a href="./index.php?action=accueil">Accueil</a>
+            <a href="./index.php?action=chercher">Chercher</a>
+            <a href="./index.php?action=livres">Livres</a>
+            <a href="./index.php?action=contact">Contact</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Appuyez pour chercher">
         </div>
-    </header>
-     <nav> 
-       <p>Ceci sera le menu !!!!</p>
-       <a href="./index.php?action=accueil">Accueil</a>
-       <a href="./index.php?action=chercher">chercher</a>
-       <a href="./index.php?action=contact">contact</a>
-      </nav>
+        <div class="login-button">
+            <a href="./index.php?action=login" class="btn-login">Login</a>
+        </div>
+    </div>
+</header>
