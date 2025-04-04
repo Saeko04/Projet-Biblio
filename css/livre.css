@@ -1,17 +1,17 @@
 body {
-    margin: 0%;
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 0%;
+    background-color: #F5E6CC;
+    padding: 0;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #2C3E50;
 }
 
 .livre {
-    background-color: #fff;
+    background-color: #EAEDED;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -27,12 +27,13 @@ h1 {
 }
 
 .livre strong {
-    color: #007bff;
+    color: #8B5E3B;
 }
 
 .livre p {
     margin: 10px 0;
     font-size: 14px;
+    color: #2C3E50;
 }
 
 .livre-container {
