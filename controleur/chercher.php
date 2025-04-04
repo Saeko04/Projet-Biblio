@@ -1,13 +1,43 @@
 <?php
+$rootPath = dirname(__DIR__, 1);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once $rootPath . '/modele/mesFonctionsAccesBDD.php';
 
-//  Partie d'appel au modèle si besoin 
+if (!function_exists('connect')) {
+    die('ERREUR: Fonctions de base de données non chargées');
+}
+
+$pdo = connect();
+
+$titre = $_GET['titre'] ?? '';
+$genreSelectionne = $_GET['genre'] ?? '';
+
+$genresDisponibles = $pdo->query('SELECT id_cotation, nom FROM genres')->fetchAll();
+
+$sql = 'SELECT livres.*, genres.nom as nom_genre 
+        FROM livres 
+        JOIN genres ON livres.cotation = genres.id_cotation
+        WHERE 1=1';
+
+$params = [];
+
+if (!empty($titre)) {
+    $sql .= ' AND livres.titre LIKE :titre';
+    $params[':titre'] = "%$titre%";
+}
+
+if (!empty($genreSelectionne)) {
+    $sql .= ' AND livres.cotation = :genre';
+    $params[':genre'] = $genreSelectionne;
+}
 
 
-// Partie de traitement des données récupérées si besoin pour mise à disposition de la vue
 
 
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueChercher.php";
+include 'vue/vueChercher.php';
 ?>

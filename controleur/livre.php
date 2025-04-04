@@ -1,13 +1,50 @@
 <?php
+include_once "../modele/mesFonctionsAccesBDD.php";
 
-//  Partie d'appel au modèle si besoin 
+// Vérification de l'ID
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header('Location: index.php?action=accueil');
+    exit;
+}
 
+$idLivre = (int)$_GET['id'];
+$bdd = connexionBDD();
 
-// Partie de traitement des données récupérées si besoin pour mise à disposition de la vue
+// Récupération des données
+$livre = getLivreDetails($bdd, $idLivre);
+$genre = getGenreByCotation($bdd, $livre['cotation']);
 
+if (!$livre) {
+    header('Location: index.php?action=accueil');
+    exit;
+}
 
+include "../vue/vueLivre.php";
 
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueContact.php";
 ?>
+
+<?php if (isset($livres)): ?>
+            <section class="results">
+                <h2>Résultats (<?= count($livres) ?>)</h2>
+                
+                <?php if (empty($livres)): ?>
+                    <p class="no-results">Aucun livre trouvé.</p>
+                <?php else: ?>
+                    <div class="book-list">
+                        <?php foreach ($livres as $livre): ?>
+                            <article class="book-card">
+                                <a href="index.php?action=detail-livre&id=<?= $livre['id'] ?>" class="book-link">
+                                    <h3><?= htmlspecialchars($livre['titre']) ?></h3>
+                                    <div class="book-meta">
+                                        <span class="genre"><?= htmlspecialchars($livre['nom_genre']) ?></span>
+                                        <?php if (!empty($livre['auteur'])): ?>
+                                            <span class="author"><?= htmlspecialchars($livre['auteur']) ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </a>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </section>
+        <?php endif; ?>
