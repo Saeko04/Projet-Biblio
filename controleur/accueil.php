@@ -1,13 +1,6 @@
 <?php
+// Ici vous pourriez charger un modèle ou récupérer des données
+// par exemple : $nouveautes = Livre::getNouveautes();
 
-//  Partie d'appel au modèle si besoin 
-
-
-// Partie de traitement des données récupérées si besoin pour mise à disposition de la vue
-
-
-
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueAccueil.php";
-?>
+// puis on appelle la vue
+include __DIR__ . "/../vue/vueAccueil.php";

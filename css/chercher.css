@@ -1,29 +1,50 @@
-body {
-  background-color: #F5E6CC;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #2C3E50;
+:root {
+  --bg: #f5f0e1;
+  --container-bg: #e8dfc2;
+  --border: #c8b89a;
+  --accent: #D4A373;
+  --btn-leather: #8C5E3C;
+  --btn-leather-hover: #A37049;
+  --text: #2D1B0E;
+  --muted: #7A6A58;
+  --surface: #ffffff;
 }
 
-/* Conteneur principal */
+body {
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+}
+
 .container {
   max-width: 1000px;
   margin: 40px auto;
-  background: #EAEDED;
+  background: var(--container-bg);
   border-radius: 8px;
+  border-left: 4px solid var(--accent);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 20px;
+  transition: box-shadow 0.3s ease;
 }
 
-/* Titres */
+.container:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
 h1, h2 {
   text-align: center;
-  color: #8B5E3B;
+  color: var(--btn-leather);
   margin-bottom: 20px;
+  animation: slideIn 0.6s ease-out both;
 }
 
-/* Formulaire de recherche */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .search-form {
   display: flex;
   flex-wrap: wrap;
@@ -35,44 +56,60 @@ h1, h2 {
 .form-group {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 300px;
 }
 
 .form-group label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: #2C3E50;
+  font-size: 1rem;
+  color: var(--btn-leather);
 }
 
-.form-group input[type="text"],
+.form-group input,
 .form-group select {
-  padding: 10px;
+  padding: 0.8em;
   border-radius: 5px;
-  border: 1px solid #A3B18A;
-  min-width: 200px;
-  font-size: 14px;
-  background: #F5E6CC;
-  color: #2C3E50;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 1em;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Boutons */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(212,163,115,0.5);
+  outline: none;
+}
+
+.form-text {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
 .btn {
   padding: 10px 15px;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-primary {
-  background-color: #8B5E3B;
-  color: #fff;
-  transition: background-color 0.3s ease;
+  background: linear-gradient(135deg, var(--btn-leather), var(--btn-leather-hover));
+  color: var(--surface);
 }
 
 .btn-primary:hover {
-  background-color: #A3B18A;
+  background: linear-gradient(135deg, var(--btn-leather-hover), var(--btn-leather));
+  transform: translateY(-2px);
 }
 
-/* Section des résultats */
 .results {
   margin-top: 30px;
 }
@@ -81,10 +118,9 @@ h1, h2 {
   text-align: center;
   font-style: italic;
   margin-top: 20px;
-  color: #888;
+  color: var(--muted);
 }
 
-/* Liste des livres sous forme de grille */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -92,20 +128,19 @@ h1, h2 {
   margin-top: 20px;
 }
 
-/* Carte individuelle d'un livre */
 .book-card {
-  background-color: #F5E6CC;
+  background: var(--surface);
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .book-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* Lien autour du livre */
 .book-link {
   text-decoration: none;
   color: inherit;
@@ -114,26 +149,39 @@ h1, h2 {
 .book-link h3 {
   margin: 0 0 10px;
   font-size: 18px;
-  color: #8B5E3B;
+  color: var(--btn-leather);
 }
 
-/* Métadonnées du livre */
 .book-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   font-size: 14px;
-  color: #2C3E50;
+  color: var(--text);
 }
 
-/* Style de la pastille genre */
 .genre {
-  background-color: #A3B18A;
-  color: #2C3E50;
+  background: var(--accent);
+  color: var(--surface);
   padding: 3px 6px;
   border-radius: 4px;
+  flex-basis: 100%;
+  margin-top: 5px;
 }
 
-/* Style de l'auteur */
 .author {
-  color: #757575;
+  color: var(--muted);
+}
+
+.search-form .form-group:nth-child(4) {
+  flex: 0 0 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form .btn-primary {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin-left: 10px;
+  margin-top: 0;
 }

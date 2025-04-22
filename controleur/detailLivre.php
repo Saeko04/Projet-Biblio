@@ -1,30 +1,46 @@
 <?php
-$rootPath = dirname(__DIR__, 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once $rootPath . '/modele/mesFonctionsAccesBDD.php';
+// Initialisation
+require_once __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
 
-if (!function_exists('connect')) {
-    die('ERREUR: Fonctions de base de données non chargées');
+try {
+    // Vérification de l'ID
+    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+        throw new Exception('ID de livre invalide');
+    }
+
+    $livreId = (int) $_GET['id'];
+    $pdo = connect();
+
+    // Requête principale
+    $stmt = $pdo->prepare('
+        SELECT livres.*, genres.nom as genre_nom 
+        FROM livres 
+        JOIN genres ON livres.cotation = genres.id_cotation
+        WHERE livres.id = ?
+    ');
+    $stmt->execute([$livreId]);
+    $livre = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$livre) {
+        throw new Exception('Livre non trouvé');
+    }
+
+    // DEBUG: Afficher les données brutes (à retirer en production)
+    echo '<pre>Livre: ';
+    print_r($livre);
+    echo '</pre>';
+
+    // Inclusion de la vue
+    require_once __DIR__ . '/../vue/vueDetailLivre.php';
+} catch (Exception $e) {
+    $messageErreur = $e->getMessage();
+    require_once __DIR__ . '/../vue/vueErreur.php';
 }
 
-$pdo = connect();
-// Vérifier si l'ID du livre est fourni
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    die("ID de livre invalide.");
-}
+$pdo = new PDO('mysql:host=localhost;dbname=biblio', 'root', '');
+$sql = 'SELECT * FROM images';
+$stmt = $pdo->query($sql);
 
-$id = $_GET['id'];
-
-// Récupérer les détails du livre, y compris l'image
-$stmt = $pdo->prepare("SELECT titre, auteur, date_sortie, resume, image FROM livres WHERE id = ?");
-$stmt->execute([$id]);
-$livre = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$livre) {
-    die("Livre non trouvé.");
-}
-
-
-include 'vue/vueDetailLivre.php';
 ?>

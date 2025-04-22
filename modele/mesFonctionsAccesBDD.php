@@ -4,10 +4,10 @@
 // Ajout de la fonction connecte
 function connect()
 {
-    $host = 'localhost';
-    $db = 'dblogin4363';
-    $user = 'login4363';
-    $pass = 'QUeCzgNqXLFCOfK';
+    $host = '192.168.1.156:3306';
+    $db = 'dblogin4084';
+    $user = 'Rayan';
+    $pass = 'Rayan789';
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

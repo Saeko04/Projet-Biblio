@@ -2,12 +2,13 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-require __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
+
+require_once __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
 
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
 
     $pdo = connect();
@@ -15,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (existe($pdo, $username)) {
         $stmt = $pdo->prepare('SELECT password FROM utilisateurs WHERE username = ?');
         $stmt->execute([$username]);
-        $password_db = $stmt->fetchColumn();
+        $hash = $stmt->fetchColumn();
 
-        if ($password === $password_db) {
+        if (password_verify($password, $hash)) {
             $_SESSION['username'] = $username;
             $_SESSION['connected'] = true;
             $message = '✅ Connexion réussie, bienvenue ' . htmlspecialchars($username) . ' !';

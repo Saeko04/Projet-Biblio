@@ -15,10 +15,26 @@
             <div class="form-group">
                 <label for="titre">Titre :</label>
                 <input type="text" id="titre" name="titre" 
-                       value="<?= htmlspecialchars($titre ?? '') ?>"
-                       placeholder="Entrez un titre...">
+                    value="<?= htmlspecialchars($titre ?? '') ?>"
+                    placeholder="Entrez un titre...">
+            </div>
+
+            <div class="form-group">
+                <label for="auteur">Auteur :</label>
+                <input type="text" id="auteur" name="auteur" 
+                    value="<?= htmlspecialchars($auteur ?? '') ?>"
+                    placeholder="Entrez un auteur...">
             </div>
             
+            <div class="form-group">
+                <label for="date_sortie">📅 Date de sortie :</label>
+                <input type="date" id="date_sortie" name="date_sortie"
+                    value="<?= htmlspecialchars($dateSortie ?? '') ?>">
+                <small class="form-text">Choisissez une date précise (AAAA-MM-JJ)</small>
+            </div>
+
+
+
             <div class="form-group">
                 <label for="genre">Genre :</label>
                 <select id="genre" name="genre" class="form-control">

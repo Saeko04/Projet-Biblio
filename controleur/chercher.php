@@ -10,8 +10,11 @@ if (!function_exists('connect')) {
 
 $pdo = connect();
 
+// Récupération des paramètres de recherche
 $titre = $_GET['titre'] ?? '';
+$auteur = $_GET['auteur'] ?? '';
 $genreSelectionne = $_GET['genre'] ?? '';
+$dateSortie = $_GET['date_sortie'] ?? '';
 
 $genresDisponibles = $pdo->query('SELECT id_cotation, nom FROM genres')->fetchAll();
 
@@ -27,13 +30,20 @@ if (!empty($titre)) {
     $params[':titre'] = "%$titre%";
 }
 
+if (!empty($auteur)) {
+    $sql .= ' AND livres.auteur LIKE :auteur';
+    $params[':auteur'] = "%$auteur%";
+}
+
+if (!empty($dateSortie)) {
+    $sql .= ' AND livres.date_sortie = :date_sortie';
+    $params[':date_sortie'] = $dateSortie;
+}
+
 if (!empty($genreSelectionne)) {
     $sql .= ' AND livres.cotation = :genre';
     $params[':genre'] = $genreSelectionne;
 }
-
-
-
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);

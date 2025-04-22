@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Espace Membre</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 
-<div class="add-book-button" style="position: absolute; top: 20px; right: 20px;">
-        <a href="ajouterLivre.php"
-           style="background-color: #2ecc71; color: #fff; padding: 8px 12px; 
+<div class="container" style="position: relative;">
+    <div class="logout-button" style="position: absolute; top: 20px; right: 20px;">
+        <a href="../controleur/logout.php" 
+           style="background-color: #e74c3c; color: #fff; padding: 8px 12px; 
                   border-radius: 5px; text-decoration: none; font-weight: bold;">
-            Ajouter un Livre
+            Déconnexion
         </a>
     </div>
 
@@ -19,13 +20,14 @@
     <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?> !</p>
 
     <!-- Formulaire d'ajout de livre (exemple) -->
-    <h2>Rechercher un livre</h2>
+    <h2>Ajouter un livre</h2>
+    <br>
     <form method="POST">
         <input type="text" name="titre" placeholder="Titre" required>
         <input type="text" name="auteur" placeholder="Auteur" required>
         <input type="date" name="date_sortie" placeholder="Date de sortie" required>
-        <input type="text" name="genre" placeholder="Catégorie" required>
-        <button type="submit" name="rechercher" title="Rechercher le livre">Rechercher</button>
+        <input type="text" name="resume" placeholder="Résumé" required>
+        <button type="submit" name="ajouter">Ajouter</button>
     </form>
 
     <!-- Liste des livres (exemple) -->
@@ -51,13 +53,7 @@
                         <td><?= htmlspecialchars($livre['date_sortie']) ?></td>
                         <td><?= htmlspecialchars($livre['resume']) ?></td>
                         <td>
-                            <a href="modifierLivre.php?id=<?= $livre['id'] ?>" 
-                               title="Modifier le livre"
-                               onclick="return confirm('Vous voulez modifiez ?')">
-                                🖊️
-                            </a>
                             <a href="espaceMembre.php?supprimer=<?= $livre['id'] ?>" 
-                               title="Supprimer le livre"
                                onclick="return confirm('Supprimer définitivement ?')">
                                🗑️
                             </a>

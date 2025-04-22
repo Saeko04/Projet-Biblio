@@ -44,6 +44,7 @@
     <?php endif; ?>
 </div>
 
+<!-- Tu peux mettre ici un require 'footer.php' si tu en as un -->
 
 </body>
 </html>
