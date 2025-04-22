@@ -8,11 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auteur = $_POST['auteur'] ?? '';
     $date_sortie = $_POST['date_sortie'] ?? '';
     $resume = $_POST['resume'] ?? '';
-    $image_url = $_POST['image_url'] ?? '';
 
     if ($titre && $cotation && $auteur && $date_sortie && $resume) {
-        $stmt = $pdo->prepare("INSERT INTO livres (titre, cotation, auteur, date_sortie, resume, image_url) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$titre, $cotation, $auteur, $date_sortie, $resume, $image_url]);
+        $stmt = $pdo->prepare("INSERT INTO livres (titre, cotation, auteur, date_sortie, resume) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$titre, $cotation, $auteur, $date_sortie, $resume]);
         header("Location: espaceMembre.php");
         exit;
     } else {
@@ -55,8 +54,6 @@ $genres = $pdo->query("SELECT * FROM genres")->fetchAll(PDO::FETCH_ASSOC);
         <label for="resume">Résumé :</label>
         <textarea name="resume" required></textarea>
         
-        <label for="image_url">Image URL :</label>
-        <input type="text" name="image_url">
         
         <button type="submit">Ajouter</button>
     </form>
