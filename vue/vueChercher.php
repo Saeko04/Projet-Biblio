@@ -15,25 +15,16 @@
             <div class="form-group">
                 <label for="titre">Titre :</label>
                 <input type="text" id="titre" name="titre" 
-                    value="<?= htmlspecialchars($titre ?? '') ?>"
-                    placeholder="Entrez un titre...">
+                       value="<?= htmlspecialchars($titre ?? '') ?>"
+                       placeholder="Entrez un titre...">
             </div>
-
+            
             <div class="form-group">
                 <label for="auteur">Auteur :</label>
                 <input type="text" id="auteur" name="auteur" 
                     value="<?= htmlspecialchars($auteur ?? '') ?>"
                     placeholder="Entrez un auteur...">
             </div>
-            
-            <div class="form-group">
-                <label for="date_sortie">📅 Date de sortie :</label>
-                <input type="date" id="date_sortie" name="date_sortie"
-                    value="<?= htmlspecialchars($dateSortie ?? '') ?>">
-                <small class="form-text">Choisissez une date précise (AAAA-MM-JJ)</small>
-            </div>
-
-
 
             <div class="form-group">
                 <label for="genre">Genre :</label>
@@ -47,6 +38,29 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            
+            <div class="form-group">
+                <label for="date_sortie">📅 Année de sortie :</label>
+                <input type="number" id="date_sortie" name="date_sortie" class="form-control"
+                    placeholder="Ex : 2021"
+                    value="<?= htmlspecialchars($dateSortie ?? '') ?>" min="1000" max="9999">
+                <small class="form-text">Saisissez une année (format AAAA)</small>
+            </div>
+
+
+            <div class="form-group">
+                <label for="cotation">Cotation :</label>
+                <select id="cotation" name="cotation" class="form-control">
+                    <option value="">Toutes les cotations</option>
+                    <?php foreach ($cotationsDisponibles as $cot): ?>
+                        <option value="<?= htmlspecialchars($cot['cotation']) ?>"
+                        <?= ($cotationSelectionnee == $cot['cotation']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($cot['cotation']) ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
             
             <button type="submit" class="btn btn-primary">Rechercher</button>
         </form>
