@@ -10,13 +10,16 @@ if (!function_exists('connect')) {
 
 $pdo = connect();
 
-// Récupération des paramètres de recherche
 $titre = $_GET['titre'] ?? '';
 $auteur = $_GET['auteur'] ?? '';
 $genreSelectionne = $_GET['genre'] ?? '';
-$dateSortie = $_GET['date_sortie'] ?? '';
+$dateSortie = $_GET['date_sortie'] ?? ''; // Ajouté pour récupérer l'année entrée
+$anneesDisponibles = $pdo->query('SELECT DISTINCT YEAR(date_sortie) as annee FROM livres ORDER BY annee DESC')->fetchAll();
+$cotationSelectionnee  = $_GET['cotation'] ?? '';
+
 
 $genresDisponibles = $pdo->query('SELECT id_cotation, nom FROM genres')->fetchAll();
+$cotationsDisponibles = $pdo->query('SELECT DISTINCT cotation FROM livres ORDER BY cotation')->fetchAll();
 
 $sql = 'SELECT livres.*, genres.nom as nom_genre 
         FROM livres 
@@ -36,13 +39,19 @@ if (!empty($auteur)) {
 }
 
 if (!empty($dateSortie)) {
-    $sql .= ' AND livres.date_sortie = :date_sortie';
-    $params[':date_sortie'] = $dateSortie;
+    $sql .= ' AND YEAR(livres.date_sortie) = :annee';
+    $params[':annee'] = $dateSortie;
 }
+
 
 if (!empty($genreSelectionne)) {
     $sql .= ' AND livres.cotation = :genre';
     $params[':genre'] = $genreSelectionne;
+}
+
+if (!empty($cotationSelectionnee )) {
+    $sql .= ' AND livres.cotation = :cotation';
+    $params[':cotation'] = $cotationSelectionnee ;
 }
 
 $stmt = $pdo->prepare($sql);
