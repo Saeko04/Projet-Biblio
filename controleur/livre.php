@@ -1,13 +1,10 @@
 <?php
+include_once __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
+$pdo = connect();
 
-//  Partie d'appel au modèle si besoin 
+// Récupère le critère de tri passé en GET, sinon 'cotation'
+$tri = $_GET['tri'] ?? 'cotation';
+$livres = getTousLesLivres($pdo, $tri);
 
-
-// Partie de traitement des données récupérées si besoin pour mise à disposition de la vue
-
-
-
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueContact.php";
+require __DIR__ . '/../vue/vuelivres.php';
 ?>
