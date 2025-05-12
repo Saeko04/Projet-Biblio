@@ -3,50 +3,38 @@
 <head>
     <meta charset="UTF-8" />
     <title>Liste des livres</title>
-    <link rel="stylesheet" type="text/css" href="../css/livre.css">
+    <link rel="stylesheet" type="text/css" href="css/livre.css">
 </head>
 <body>
-<!-- Formulaire de tri -->
+    <!-- Formulaire de tri -->
 <form method="post" action="index.php?action=livres">
-        <label  for="tri">Trier par :</label>
+        <label for="tri">Trier par :</label>
         <select name="tri" id="tri" onchange="this.form.submit()">
             <option value="cotation" <?= ($_POST['tri'] ?? '') === 'cotation' ? 'selected' : '' ?>>Cotation</option>
             <option value="titre" <?= ($_POST['tri'] ?? '') === 'titre' ? 'selected' : '' ?>>Titre</option>
             <option value="auteur" <?= ($_POST['tri'] ?? '') === 'auteur' ? 'selected' : '' ?>>Auteur</option>
         </select>
     </form>
-
     <h1>Voici l'ensemble des livres que l'on possède</h1>
 
     <div class="livre-container">
-
-    <!-- Formulaire de tri -->
-
-
-
         <?php
-
-        include_once __DIR__ . '/../modele/mesFonctionsAccesBDD.php';
-        $pdo = connect();
-        $livres = getTousLesLivres($pdo);
-
+        
         if (isset($_POST['tri']) && in_array($_POST['tri'], ['cotation', 'titre', 'auteur'])) {
             usort($livres, function ($a, $b) {
                 return strcmp($a[$_POST['tri']], $b[$_POST['tri']]);
             });
         }
 
+        // Afficher les livres
         foreach ($livres as $livre) {
             echo "<div class='livre'>";
-            echo '<strong>Cotation :</strong> ' . $livre['cotation'] . '<br>';
-            echo '<strong>Titre :</strong> ' . $livre['titre'] . '<br>';
-            echo '<strong>Auteur :</strong> ' . $livre['auteur'] . '<br>';
-            echo '<strong>Résumé :</strong> ' . $livre['resume'] . '<br>';
+            echo '<strong>Cotation :</strong> ' . htmlspecialchars($livre['cotation']) . '<br>';
+            echo '<strong>Titre :</strong> ' . htmlspecialchars($livre['titre']) . '<br>';
+            echo '<strong>Auteur :</strong> ' . htmlspecialchars($livre['auteur']) . '<br>';
+            echo '<strong>Résumé :</strong> ' . htmlspecialchars($livre['resume']) . '<br>';
             echo '</div>';
         }
-
-        disconnect($objpdo);
-
         ?>
     </div>
 </body>
