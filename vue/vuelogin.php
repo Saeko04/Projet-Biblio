@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Connexion</title>
-  <link rel="stylesheet" type="text/css" href="../css/login.css">
-</head>
-<body>
-
 <div class="main-login-wrapper">
   <div class="login-container">
     <h2>Connexion</h2>
@@ -35,7 +26,3 @@
     </form>
   </div>
 </div>
-
-
-</body>
-</html>
