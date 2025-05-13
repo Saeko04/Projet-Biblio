@@ -200,7 +200,10 @@ function chercherLivres($pdo, $titre = '', $auteur = '', $genre = '', $annee = '
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
+function mettreAJourLivre($pdo, $id, $titre, $auteur, $date_sortie, $resume) {
+    $updateStmt = $pdo->prepare("UPDATE livres SET titre = ?, auteur = ?, date_sortie = ?, resume = ? WHERE id = ?");
+    $updateStmt->execute([$titre, $auteur, $date_sortie, $resume, $id]);
+}
 
 
 
