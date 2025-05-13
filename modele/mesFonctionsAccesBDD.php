@@ -158,7 +158,8 @@ function cotationsDisponibles($pdo){
     $livre = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function chercherLivres($pdo, $titre = '', $auteur = '', $genre = '', $annee = '', $cotation = '') {
+
+function chercherLivres($pdo, $titre = '', $auteur = '', $genre = '', $annee = '', $cotation = '', $id = '') {
     $sql = 'SELECT livres.*, genres.nom as nom_genre FROM livres JOIN genres ON livres.cotation = genres.id_cotation WHERE 1=1';
 
     $params = [];
@@ -188,35 +189,19 @@ function chercherLivres($pdo, $titre = '', $auteur = '', $genre = '', $annee = '
         $params[':cotation'] = $cotation;
     }
 
+    if (!empty($id)) {
+        $sql .= ' AND livres.id = :id';
+        $params[':id'] = $id;
+    }
+    
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-function supprimerLivreParId($idLivre, $pdo) {
-    try {
-        // Requête SQL pour supprimer le livre
-        $sql = "DELETE FROM livres WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
 
-        // Liaison du paramètre
-        $stmt->bindParam(':id', $idLivre, PDO::PARAM_INT);
-
-        // Exécution de la requête
-        if ($stmt->execute()) {
-            if ($stmt->rowCount() > 0) {
-                return "Le livre avec l'ID $idLivre a été supprimé avec succès.";
-            } else {
-                return "Aucun livre trouvé avec l'ID $idLivre.";
-            }
-        } else {
-            return "Erreur lors de l'exécution de la requête.";
-        }
-    } catch (PDOException $e) {
-        return "Une erreur est survenue : " . $e->getMessage();
-    }
-}
 
 
 ?>
