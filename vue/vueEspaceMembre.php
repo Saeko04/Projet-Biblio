@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Espace Membre</title>
-    <link rel="stylesheet" href="../css/admin.css">
-</head>
-<body>
-
 <div class="container" style="position: relative;">
     <div class="logout-button" style="position: absolute; top: 20px; right: 20px;">
-        <a href="../controleur/logout.php" 
-           style="background-color: #e74c3c; color: #fff; padding: 8px 12px; 
-                  border-radius: 5px; text-decoration: none; font-weight: bold;">
+        <a href="../controleur/logout.php"
+           style="background-color: #e74c3c; color: #fff; padding: 8px 12px;
+           border-radius: 5px; text-decoration: none; font-weight: bold;">
             Déconnexion
         </a>
     </div>
@@ -19,17 +10,15 @@
     <h1>Interface Administration</h1>
     <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?> !</p>
 
-    <!-- Formulaire d'ajout de livre (exemple) -->
     <h2>Ajouter un livre</h2>
-    <form method="POST">
+    <form method="POST" action="./index.php?action=membre">
         <input type="text" name="titre" placeholder="Titre" required>
         <input type="text" name="auteur" placeholder="Auteur" required>
-        <input type="date" name="date_sortie" placeholder="Date de sortie" required>
+        <input type="date" name="date_sortie" required>
         <input type="text" name="resume" placeholder="Résumé" required>
         <button type="submit" name="ajouter" title="Ajouter le livre">Ajouter</button>
     </form>
 
-    <!-- Liste des livres (exemple) -->
     <h2>Liste des livres</h2>
     <div class="table-responsive">
         <table>
@@ -52,11 +41,12 @@
                         <td><?= htmlspecialchars($livre['date_sortie']) ?></td>
                         <td><?= htmlspecialchars($livre['resume']) ?></td>
                         <td>
-                            <a href="espaceMembre.php?supprimer=<?= $livre['id'] ?>" 
-                               title="Supprimer le livre"
-                               onclick="return confirm('Supprimer définitivement ?')">
-                               🗑️
-                            </a>
+                            <form method="POST" action="./index.php?action=membre" onsubmit="return confirm('Supprimer définitivement ?');">
+                                <input type="hidden" name="supprimer" value="<?= htmlspecialchars($livre['id']) ?>">
+                                <button type="submit" title="Supprimer le livre" style="background: none; border: none; cursor: pointer;">
+                                    🗑️
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -64,6 +54,3 @@
         </table>
     </div>
 </div>
-
-</body>
-</html>
