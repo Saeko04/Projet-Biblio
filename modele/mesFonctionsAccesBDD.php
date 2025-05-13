@@ -194,7 +194,29 @@ function chercherLivres($pdo, $titre = '', $auteur = '', $genre = '', $annee = '
 }
 
 
+function supprimerLivreParId($idLivre, $pdo) {
+    try {
+        // Requête SQL pour supprimer le livre
+        $sql = "DELETE FROM livres WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
 
+        // Liaison du paramètre
+        $stmt->bindParam(':id', $idLivre, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        if ($stmt->execute()) {
+            if ($stmt->rowCount() > 0) {
+                return "Le livre avec l'ID $idLivre a été supprimé avec succès.";
+            } else {
+                return "Aucun livre trouvé avec l'ID $idLivre.";
+            }
+        } else {
+            return "Erreur lors de l'exécution de la requête.";
+        }
+    } catch (PDOException $e) {
+        return "Une erreur est survenue : " . $e->getMessage();
+    }
+}
 
 
 ?>
