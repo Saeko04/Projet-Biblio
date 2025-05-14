@@ -1,0 +1,81 @@
+/* Conteneur global */
+.contact-page-wrapper {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  
+  /* Titre principal */
+  .contact-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Messages d'erreur et de succès */
+  .contact-message-error {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .contact-message-success {
+    color: #2ecc71;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Formulaire */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contact-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form-label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .contact-form-input,
+  .contact-form-textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .contact-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Bouton d'envoi */
+  .contact-form-button {
+    background-color: #5c6bc0;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 120px;
+    align-self: center;
+  }
+  
+  .contact-form-button:hover {
+    background-color: #3949ab;
+  }
+  
