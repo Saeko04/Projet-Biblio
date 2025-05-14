@@ -1,0 +1,123 @@
+/* Global page style */
+body {
+  background: linear-gradient(135deg, #f5f0e1, #e8dfc2);
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+/* Centrage du formulaire seulement, sans casser le header/footer */
+.main-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* Login box */
+.login-container {
+  background: #fefbf6;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  text-align: center;
+  border: 1px solid #d6c9b2;
+  animation: fadeInUp 0.6s ease-out;
+  margin-top: 20px;
+}
+
+/* Animation à l'apparition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title style */
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #493424;
+  font-size: 24px;
+}
+
+/* Input fields */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 12px 0;
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fffef9;
+  box-sizing: border-box;
+}
+
+/* Button style */
+.login-container button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #7F5234;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #99643D;
+}
+
+/* Message (erreur ou info) */
+.message {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #918888;
+  font-weight: bold;
+}
+
+.message-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Loading spinner */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #7F5234;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design pour mobile */
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .login-container h2 {
+    font-size: 20px;
+  }
+
+  .login-container button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
